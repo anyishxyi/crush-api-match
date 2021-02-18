@@ -22,8 +22,6 @@ describe("testing-user-routes", () => {
     const response = await request.post("/match")
 																	.send(matchData);
 		savedMatch = response.body ? response.body.match : null
-		console.log('savedMatch', savedMatch)
-		console.log('response', response)
 		expect(response.status).toBe(201)
 		expect(savedMatch._id).toBeDefined()
 		expect(savedMatch.first_user_id).toBe(matchData.first_user_id)
