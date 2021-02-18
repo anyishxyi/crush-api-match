@@ -29,20 +29,17 @@ describe("testing-match-routes", () => {
 		expect(savedMatch.second_user_id).toBe(matchData.second_user_id)
 		done()
   });
-	// it('GET /user/:id get user info', async done => {
-	// 	const response = await request.get(`/user/${savedMatch._id}`)
-	// 	const userFound = response.body ? response.body.user : null
-	// 	expect(userFound._id.toString()).toBe(savedMatch._id.toString())
-	// 	expect(userFound.email).toBe(savedMatch.email)
-	// 	expect(userFound.firstName).toBe(savedMatch.firstName)
-	// 	expect(userFound.lastName).toBe(savedMatch.lastName)
-	// 	done()
-	// });
+	it('GET /match/:userID List All match of one user', async done => {
+		const response = await request.get(`/match/${matchData.first_user_id}`)
+		const matchs = response.body ? response.body.matchs : null
+		expect(response.status).toBe(200)
+		expect(matchs.length).toBeDefined()
+		done()
+	});
 });
 
 afterAll( async () => {
 	try {
-		// await UserModel.findOneAndDelete({_id: savedMatch._id});
 		await mongoose.disconnect()
 	} catch (error) {
 		console.error(error);

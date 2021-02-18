@@ -5,7 +5,6 @@ import Match from '../../models/match';
  */
 exports.getAll = async (req, res, next) => {
   try {
-    console.log('route get all')
     const matchs = await Match.find().catch((error) => { res.status(500).json({ error: error }); });
     if (!matchs) {
       return res.status(404).json({ error: new Error('matchs not found!') });

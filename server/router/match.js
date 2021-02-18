@@ -7,6 +7,6 @@ const router = express.Router();
 
 router.post('/', addMatch.addMatch);
 router.get('/', getAll.getAll);
-// router.get('/:id', getUserMatch.getUserMatch);
+router.get('/:userID', getUserMatch.getUserMatch);
 
 module.exports = router;
