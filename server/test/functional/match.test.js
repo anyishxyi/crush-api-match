@@ -11,13 +11,14 @@ const matchData = {
 };
 var savedMatch = null;
 
-describe("testing-user-routes", () => {
-  // it("GET /user get all users", async done => {
-  //   const users = await request.get("/user")
-	// 	expect(users.body).toBeDefined()
-	// 	expect(users.status).toBe(200)
-	// 	done()
-  // });
+describe("testing-match-routes", () => {
+  it("GET /match get all matchs", async done => {
+    const resp = await request.get("/match")
+		const matchs = resp.body ? resp.body.matchs : null
+		expect(resp.status).toBe(200)
+		expect(matchs.length).toBeDefined()
+		done()
+  });
   it("POST /match create a new match", async done => {
     const response = await request.post("/match")
 																	.send(matchData);
