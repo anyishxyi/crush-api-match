@@ -2,8 +2,8 @@ require('dotenv').config();
 import mongoose from 'mongoose';
 import MatchModel from '../../models/match';
 const matchData = { 
-	first_user_id: "test-unit1@crush.fr",
-	second_user_id: "test-unit1@crush.fr",
+	first_user_id: "602d37bfa848253792d9e6a3",
+	second_user_id: "602aee340026fab6a71df1e3",
 	created_date: new Date()
 };
 
@@ -23,17 +23,14 @@ describe('Math Model Unit Test', () => {
 		expect(savedMatch.first_user_id).toBe(matchData.first_user_id);
 		expect(savedMatch.second_user_id).toBe(matchData.second_user_id);
 	});
-	// it('get all users', async () => {
-	// 	const users = await MatchModel.find();
-	// 	expect(users.length).toBeDefined();	
-	// });
-	// it('get user info', async () => {
-	// 	const userFound = await MatchModel.findOne({_id: savedMatch._id});
-	// 	expect(userFound._id.toString()).toBe(savedMatch._id.toString());
-	// 	expect(userFound.email).toBe(savedMatch.email);
-	// 	expect(userFound.firstName).toBe(savedMatch.firstName);
-	// 	expect(userFound.lastName).toBe(savedMatch.lastName);
-	// });
+	it('get all matches', async () => {
+		const matches = await MatchModel.find();
+		expect(matches.length).toBeDefined();	
+	});
+	it('List All match of one user', async () => {
+		const matches = await MatchModel.find({first_user_id: matchData.first_user_id, second_user_id: matchData.first_user_id});
+		expect(matches.length).toBeDefined();	
+	});
 })
 
 afterAll( async () => {
